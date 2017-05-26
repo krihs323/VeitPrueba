@@ -2,63 +2,81 @@
  <html>
       <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+            <script src="controller.js"></script>
+            
       </head>
 
       <body>
 		<h1>Registro de usuarios</h1>
 
-      	<form action="">
+      	<div ng-app="myapp" ng-controller="userController" ng-init="displayData()">
 
-      		<label>Nombres</label>
-            <input type="text" name="nombre" class="form-control"  required/>
-            <br /> 
-			
-			<label>Apellidos</label>
-            <input type="text" name="apellido" class="form-control"  required/>
-            <br />
+                  <form name="userForm">
 
-            <label>Pais</label>
-            <select name="pais" id="">
-            	<option value="">--</option>
-            	<option value="Colombia">Colombia</option>
-            </select>
-            <br />
+                        <input type="hidden" ng-model="id" />
 
-            <label>Ciudad</label>
-            <select name="ciudad" id="">
-            	<option value="">--</option>
-            	<option value="Cali">Cali</option>
-            </select>
-            <br />
+            		<label for="nombres">Nombres</label>
+                        <input type="text" name="nombres" ng-model="nombres"  ng-required="true" class="form-control"/>
+                        <span ng-show="!userForm.$pristine && userForm.nombres.$error.required">El nombre es requerido.</span>
+                        <br /><br />
+      			
+      			<label for="apellidos">Apellidos</label>
+                        <input type="text" name="apellidos" ng-model="apellidos" class="form-control" ng-required="true"/>
+                        <span ng-show="!userForm.$pristine && userForm.apellidos.$error.required">El apellido es requerido.</span>
+                        <br /><br />
 
-            <label>Nit</label>
-            <input type="text" name="nit" class="form-control"  required/>
-            <br />
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" placeholder="example@email.com" 
+                              name="email" ng-model="email" required
+                              ng-class="{ error: exampleForm.email.$error.required && !exampleForm.$pristine, warning: exampleForm.email.$error.email }">
+                        <br /><br />
 
-            <label>Razón Social</label>
-            <input type="text" name="razonSocial" class="form-control"  required/>
-            <br />
+                        <label for="pais">Pais</label>
+                        <select ng-model="pais" ng-options="idx as pais for (idx, pais) in paises" class="form-control" ng-required="true">
+                           </select>
+                        <span ng-show="!userForm.$pristine && userForm.pais.$error.required">El pais es requerido.</span>
+                        <br /><br />
 
-            <label>PBX</label>
-            <input type="text" name="pbx" class="form-control"  required/>
-            <br />
+                        <label for="ciudad">Ciudad</label>
+                       <select ng-model="ciudad" ng-options="idx as ciudad for (idx, ciudad) in ciudades" class="form-control" ng-required="true">
+                           </select>
+                        <span ng-show="!userForm.$pristine && userForm.pais.$error.required">La ciudad es requerida.</span>
+                        <br /><br />
 
-            <label>Telefono</label>
-            <input type="text" name="telefono" class="form-control"  required/>
-            <br />
+                        <label for="nit">Nit</label>
+                        <input type="text" name="nit" ng-model="nit" class="form-control" ng-required="true"/>
+                        <br /><br />
 
-            <label>Dirección</label>
-            <input type="text" name="direccion" class="form-control"  required/>
-            <br />
+                        <label for="razonSocial">Razón Social</label>
+                        <input type="text" name="razonSocial" ng-model="razonSocial" class="form-control"  required/>
+                        <br /><br />
 
-			<label>Adjuntar Cédula</label>
-            <input type="file" id="input" name="cedula">
-            <br />
+                        <label for="pbx">PBX</label>
+                        <input type="text" name="pbx" ng-model="pbx" class="form-control" required/>
+                        <br /><br />
 
-            <label>Adjuntar Certificado Camara y Comercio</label>
-            <input type="file" id="input" name="camaraComercio">
-            <br />
-			
-			<input type="submit" value="Registrar">
-      		
-      	</form>
+                        <label for="telefono">Telefono</label>
+                        <input type="text" name="telefono" ng-model="telefono" class="form-control"  required/>
+                        <br /><br />
+
+                        <label for="direccion">Dirección</label>
+                        <input type="text" name="direccion" ng-model="direccion" class="form-control"  required/>
+                        <br /><br />
+
+            			<label for="cedula">Adjuntar Cédula</label>
+                        <input type="file" id="input" ng-model="cedula" name="cedula">
+                        <br /><br />
+
+                        <label for="camaraComercio">Adjuntar Certificado Camara y Comercio</label>
+                        <input type="file" id="input" ng-model="camaraComercio" name="camaraComercio">
+                        <br /><br />
+            		
+                        <input type="submit" ng-click="insertData()" value="Registrar" name="btnInsert">
+      	
+                  </form>
+      	</div>
+
+                  
+      </body>
+</html>
