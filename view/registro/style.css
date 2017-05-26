@@ -1,0 +1,11 @@
+.error {
+  /*border-color: red;*/
+}
+ 
+.warning {
+  /*border-color: yellow;*/
+}
+
+.valid {
+  border-color: green;
+}

@@ -10,10 +10,26 @@ var app = angular.module("myapp",[]);
                return;
            }
 
+           if($scope.nombres.length >= 50)
+           {
+               alert("El nombre no puede superar los 50 caracteres.");
+               $scope.nombres.$setDirty();
+               return;
+           }
+
+
            if($scope.apellidos == null)
            {
                alert("El apellido es requerido, por favor llene el campo");
                $scope.apellidos.$setDirty();
+               return;
+           }
+
+           if($scope.nombres.length >= 50)
+           {
+               alert("Los apellidos no pueden superar los 50 caracteres.");
+               $scope.apellidos.$setDirty();
+               $scope.apellidos.$setRequired();
                return;
            }
 
