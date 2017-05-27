@@ -1,9 +1,9 @@
 <?php
 
-class miPrimeraPrueba extends PHPUnit_Framework_TestCase
+class usuarioTest extends PHPUnit_Framework_TestCase
 {
-	public function test(){
-		$this->assertTrue(true);
+	public function testUsuario(){
+		$usuario = new UsuarioController;
 	}
-	
+
 }
